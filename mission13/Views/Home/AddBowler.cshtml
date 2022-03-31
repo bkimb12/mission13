@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Add Bowler";
+}
+
+@model Bowler
+
+<h1>Add a Bowler</h1>
+
+<!--Form to add movies with each category-->
+<div>
+    <form method="post">
+
+        <!--Validation Errors will be shown-->
+        <div asp-validation-summary="All"></div>
+
+        <label asp-for="BowlerFirstName">First Name:</label>
+        <input asp-for="BowlerFirstName" />
+
+        <br />
+
+        <label asp-for="BowlerMiddleInit">Middle Initial:</label>
+        <input asp-for="BowlerMiddleInit" />
+
+        <br />
+
+        <label asp-for="BowlerLastName">Last Name:</label>
+        <input asp-for="BowlerLastName" />
+
+        <br />
+
+        <label asp-for="BowlerAddress">Address:</label>
+        <input asp-for="BowlerAddress" />
+
+        <br />
+
+        <label asp-for="BowlerCity">City:</label>
+        <input asp-for="BowlerCity" />
+
+        <br />
+
+        <label asp-for="BowlerState">State:</label>
+        <input asp-for="BowlerState" />
+
+        <br />
+
+        <label asp-for="BowlerZip">Zip:</label>
+        <input asp-for="BowlerZip" />
+
+        <br />
+
+        <label asp-for="BowlerPhoneNumber">Phone Number:</label>
+        <input asp-for="BowlerPhoneNumber" />
+
+        <br />
+
+        <label asp-for="TeamID">Team</label>
+        <select asp-for="TeamID">
+            @foreach (var t in ViewBag.Teams)
+            {
+                <option value="@t.TeamID">@t.TeamName</option>
+            }
+        </select>
+
+        <!--Button will change whether it is update or created-->
+        @if (Model != null)
+        {
+            <input type="hidden" asp-for="BowlerID" value="@Model.BowlerID" />
+            <button class="btn btn-primary" asp-action="Edit">Update</button>
+        }
+        else
+        {
+            <button class="btn btn-primary" asp-action="AddBowler">Create</button>
+        }
+    </form>
+</div>
